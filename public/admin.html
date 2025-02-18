@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Админ-панель</h1>
+
+        <!-- Блок для работы с пользователями -->
+        <div class="admin-container">
+            <h2>Управление пользователями</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Роль</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table">
+                    <!-- Данные о пользователях будут загружаться динамически -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Блок для работы с книгами -->
+        <div class="admin-container">
+            <h2>Управление книгами</h2>
+
+            <!-- Форма для добавления новой книги -->
+            <form id="add-book-form">
+                <h3>Добавить новую книгу</h3>
+                <label for="book-title">Название книги:</label>
+                <input type="text" id="book-title" name="title" required>
+                
+                <label for="book-author">Автор:</label>
+                <input type="text" id="book-author" name="author" required>
+
+                <label for="book-release-date">Дата выхода:</label>
+                <input type="date" id="book-release-date" name="releaseDate" required>
+
+                <label for="book-description">Описание:</label>
+                <textarea id="book-description" name="description"></textarea>
+
+                <label for="book-genre">Жанр:</label>
+                <input type="text" id="book-genre" name="genre">
+
+                <label for="book-price">Цена:</label>
+                <input type="number" id="book-price" name="price" required>
+
+                <label for="book-isbn">ISBN:</label>
+                <input type="text" id="book-isbn" name="isbn" required>
+
+                <button type="submit">Добавить книгу</button>
+            </form>
+
+            <!-- Форма для изменения данных о книге -->
+            <form id="update-book-form" style="display:none;">
+                <h3>Изменить данные о книге</h3>
+                <input type="hidden" id="update-book-id">
+                
+                <label for="update-book-title">Новое название книги:</label>
+                <input type="text" id="update-book-title" name="title">
+                
+                <label for="update-book-author">Новый автор:</label>
+                <input type="text" id="update-book-author" name="author">
+                
+                <label for="update-book-release-date">Новая дата выхода:</label>
+                <input type="date" id="update-book-release-date" name="releaseDate">
+                
+                <label for="update-book-description">Новое описание:</label>
+                <textarea id="update-book-description" name="description"></textarea>
+                
+                <label for="update-book-genre">Новый жанр:</label>
+                <input type="text" id="update-book-genre" name="genre">
+                
+                <label for="update-book-price">Новая цена:</label>
+                <input type="number" id="update-book-price" name="price">
+                
+                <label for="update-book-isbn">Новый ISBN:</label>
+                <input type="text" id="update-book-isbn" name="isbn">
+                
+                <button type="submit">Обновить книгу</button>
+            </form>
+
+            <!-- Список книг -->
+            <h2>Список книг</h2>
+            <table id="books-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Автор</th>
+                        <th>Дата выхода</th>
+                        <th>Цена</th>
+                        <th>ISBN</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="books-table-body">
+                    <!-- Данные о книгах будут загружаться динамически -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/book.js"></script>
+</body>
+</html>

@@ -28,12 +28,14 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"))
+})
 
 // Подключение маршрутов API
 app.use("/api/auth", require("./internal/routes/authRoutes"));
+app.use("/api/admin", require("./internal/routes/adminRoutes"));
+app.use("/api/books", require("./internal/routes/bookRoutes"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));

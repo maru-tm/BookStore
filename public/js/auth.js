@@ -24,15 +24,31 @@ document.getElementById("login-form")?.addEventListener("submit", async (e) => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
-    });
+    try {
+        const res = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
 
-    const data = await res.json();  // Ждем, пока вернется весь JSON
+        const data = await res.json();
 
-    if (res.ok) {
-        window.location.href = "/";  
+        if (!res.ok) {
+            throw new Error(data.message || "Ошибка авторизации");
+        }
+
+        // Сохраняем токен
+        localStorage.setItem("token", data.token);
+
+        // Проверяем роль пользователя и перенаправляем его
+        if (data.role === "admin") {
+            window.location.href = "/admin";
+        } else {
+            window.location.href = "/";
+        }
+
+    } catch (error) {
+        alert(error.message);
+        console.error("Ошибка при входе:", error);
     }
 });

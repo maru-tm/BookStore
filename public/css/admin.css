@@ -1,0 +1,132 @@
+/* Сброс стилей для более чистого старта */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Основные стили для заголовков */
+  h1, h2, h3 {
+    color: #2c6e4e; /* Зеленый оттенок */
+  }
+  
+  /* Общие стили для страницы */
+  .container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Стили для футера и шапки */
+  .header, .footer {
+    background-color: #2c6e4e; /* Зеленый оттенок */
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .footer {
+    margin-top: 40px;
+  }
+  
+  /* Специфические стили для админ-панели */
+  .admin-container {
+    width: 100%;
+    margin-top: 40px;
+  }
+  
+  /* Таблицы */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    color: #555;
+  }
+  
+  td {
+    background-color: #fafafa;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #ff5b5b;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e04e4e;
+  }
+  
+  select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Стили для форм */
+  form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2c6e4e;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #1c4e3d;
+  }
+  
