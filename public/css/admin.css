@@ -130,3 +130,97 @@
     background-color: #1c4e3d;
   }
   
+  /* Стили для модального окна */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 600px;
+  box-sizing: border-box;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Затемнённый фон */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Контейнер формы с прокруткой */
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: 70vh;
+}
+
+/* Стили для инпутов и текстовых полей */
+.modal input,
+.modal textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s;
+  min-height: 40px;
+}
+
+.modal textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* Кнопки */
+.modal button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal button:hover {
+  background-color: #45a049;
+}
+
+/* Кнопка закрытия */
+.modal .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.modal .close:hover {
+  color: #000;
+}

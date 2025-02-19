@@ -1,3 +1,5 @@
+// public/js/admin.js
+
 document.addEventListener("DOMContentLoaded", async () => {
     const usersTable = document.getElementById("users-table");
 

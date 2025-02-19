@@ -1,3 +1,4 @@
+// public/js/auth.js
 document.getElementById("register-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("username").value;

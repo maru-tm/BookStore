@@ -60,34 +60,41 @@
                 <button type="submit">Добавить книгу</button>
             </form>
 
-            <!-- Форма для изменения данных о книге -->
-            <form id="update-book-form" style="display:none;">
-                <h3>Изменить данные о книге</h3>
-                <input type="hidden" id="update-book-id">
-                
-                <label for="update-book-title">Новое название книги:</label>
-                <input type="text" id="update-book-title" name="title">
-                
-                <label for="update-book-author">Новый автор:</label>
-                <input type="text" id="update-book-author" name="author">
-                
-                <label for="update-book-release-date">Новая дата выхода:</label>
-                <input type="date" id="update-book-release-date" name="releaseDate">
-                
-                <label for="update-book-description">Новое описание:</label>
-                <textarea id="update-book-description" name="description"></textarea>
-                
-                <label for="update-book-genre">Новый жанр:</label>
-                <input type="text" id="update-book-genre" name="genre">
-                
-                <label for="update-book-price">Новая цена:</label>
-                <input type="number" id="update-book-price" name="price">
-                
-                <label for="update-book-isbn">Новый ISBN:</label>
-                <input type="text" id="update-book-isbn" name="isbn">
-                
-                <button type="submit">Обновить книгу</button>
-            </form>
+            <!-- Фон для модального окна -->
+<div id="modal-overlay" class="modal-overlay"></div>
+
+<!-- Модальное окно для редактирования книги -->
+<div id="update-book-form" class="modal" style="display:none;">
+    <h3>Изменить данные о книге</h3>
+    <form id="update-book-form-fields">
+        <input type="hidden" id="update-book-id">
+
+        <label for="update-book-title">Новое название книги:</label>
+        <input type="text" id="update-book-title" name="title">
+
+        <label for="update-book-author">Новый автор:</label>
+        <input type="text" id="update-book-author" name="author">
+
+        <label for="update-book-release-date">Новая дата выхода:</label>
+        <input type="date" id="update-book-release-date" name="releaseDate">
+
+        <label for="update-book-description">Новое описание:</label>
+        <textarea id="update-book-description" name="description"></textarea>
+
+        <label for="update-book-genre">Новый жанр:</label>
+        <input type="text" id="update-book-genre" name="genre">
+
+        <label for="update-book-price">Новая цена:</label>
+        <input type="number" id="update-book-price" name="price">
+
+        <label for="update-book-isbn">Новый ISBN:</label>
+        <input type="text" id="update-book-isbn" name="isbn">
+
+        <button type="submit">Обновить книгу</button>
+        <button type="button" id="close-modal">Закрыть</button>
+    </form>
+</div>
+
 
             <!-- Список книг -->
             <h2>Список книг</h2>
@@ -98,6 +105,8 @@
                         <th>Название</th>
                         <th>Автор</th>
                         <th>Дата выхода</th>
+                        <th>Описание</th>
+                        <th>Жанр</th>
                         <th>Цена</th>
                         <th>ISBN</th>
                         <th>Действия</th>
@@ -107,6 +116,7 @@
                     <!-- Данные о книгах будут загружаться динамически -->
                 </tbody>
             </table>
+
         </div>
     </div>
 

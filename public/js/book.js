@@ -1,6 +1,6 @@
 // Функция для выполнения fetch-запросов с токеном
 async function fetchWithAuth(url, options = {}) {
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("token");
     options.headers = {
         ...options.headers,
         'Authorization': `Bearer ${token}`,
@@ -8,11 +8,19 @@ async function fetchWithAuth(url, options = {}) {
     const response = await fetch(url, options);
     
     if (!response.ok) {
-        console.error(`Ошибка при запросе: ${response.statusText}`);
-        throw new Error(response.statusText);
+        const errorMessage = await response.text();
+        console.error(`Ошибка ${response.status}: ${errorMessage}`);
+        throw new Error(errorMessage || response.statusText);
     }
 
     return response.json();
+}
+
+// Функция для получения данных из формы
+function getFormData(formId) {
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
+    return Object.fromEntries(formData.entries());
 }
 
 // Функция для получения списка всех книг
@@ -22,6 +30,11 @@ async function getBooks() {
         const booksTableBody = document.getElementById('books-table-body');
         booksTableBody.innerHTML = '';  // Очистить таблицу перед вставкой новых данных
 
+        if (books.length === 0) {
+            booksTableBody.innerHTML = '<tr><td colspan="9">Нет доступных книг</td></tr>';
+            return;
+        }
+
         books.forEach(book => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -29,6 +42,8 @@ async function getBooks() {
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>${new Date(book.releaseDate).toLocaleDateString()}</td>
+                <td>${book.description || 'Нет описания'}</td>
+                <td>${book.genre || 'Не указан'}</td>
                 <td>${book.price}₽</td>
                 <td>${book.isbn}</td>
                 <td>
@@ -62,23 +77,42 @@ async function addBook(event) {
 
         alert('Книга успешно добавлена');
         getBooks();  // Перезагружаем список книг
+        document.getElementById('add-book-form').reset(); // Очистка формы
     } catch (error) {
         console.error("Ошибка при добавлении книги:", error);
         alert('Ошибка при добавлении книги');
     }
 }
 
-// Функция для редактирования данных книги
+// Функция для отображения модального окна редактирования
 async function editBook(bookId) {
     console.log("Запрос на редактирование книги с ID:", bookId);
+
     try {
-        const book = await fetchWithAuth(`/api/books/${bookId}`);
+        const book = await fetchWithAuth(`/api/books/${bookId}`, { method: 'GET' });
+        console.log("Данные книги для редактирования:", book);
+
+        // Показываем модальное окно и фон
+        document.getElementById('update-book-form').style.display = 'block';
+        document.getElementById('modal-overlay').style.display = 'block';
+
         populateUpdateForm(book);
-        document.getElementById('update-book-form').style.display = 'block';  // Показываем форму для обновления
     } catch (error) {
         console.error("Ошибка при загрузке данных книги для редактирования:", error);
         alert('Ошибка при загрузке данных книги');
     }
+}
+
+// Функция для заполнения формы для редактирования книги
+function populateUpdateForm(book) {
+    document.getElementById('update-book-id').value = book._id;
+    document.getElementById('update-book-title').value = book.title;
+    document.getElementById('update-book-author').value = book.author;
+    document.getElementById('update-book-release-date').value = new Date(book.releaseDate).toISOString().split('T')[0];
+    document.getElementById('update-book-description').value = book.description;
+    document.getElementById('update-book-genre').value = book.genre;
+    document.getElementById('update-book-price').value = book.price;
+    document.getElementById('update-book-isbn').value = book.isbn;
 }
 
 // Функция для обновления данных книги
@@ -86,7 +120,7 @@ async function updateBook(event) {
     event.preventDefault();
 
     const bookId = document.getElementById('update-book-id').value;
-    const formData = getFormData('update-book-form');
+    const formData = getFormData('update-book-form-fields');  // Используем правильный ID для формы
     console.log("Данные для обновления книги:", formData);
 
     try {
@@ -107,8 +141,10 @@ async function updateBook(event) {
     }
 }
 
-// Функция для удаления книги
+// Функция для удаления книги с подтверждением
 async function deleteBook(bookId) {
+    if (!confirm("Вы уверены, что хотите удалить эту книгу?")) return;
+
     console.log("Запрос на удаление книги с ID:", bookId);
     try {
         await fetchWithAuth(`/api/books/${bookId}`, { method: 'DELETE' });
@@ -120,30 +156,19 @@ async function deleteBook(bookId) {
     }
 }
 
-// Функция для получения данных из формы
-function getFormData(formId) {
-    const form = document.getElementById(formId);
-    const formData = new FormData(form);
-    return Object.fromEntries(formData.entries());
+// Функция для закрытия модального окна
+function closeModal() {
+    document.getElementById('update-book-form').style.display = 'none';
+    document.getElementById('modal-overlay').style.display = 'none';
 }
 
-// Функция для заполнения формы для редактирования книги
-function populateUpdateForm(book) {
-    document.getElementById('update-book-id').value = book._id;
-    document.getElementById('update-book-title').value = book.title;
-    document.getElementById('update-book-author').value = book.author;
-    document.getElementById('update-book-release-date').value = new Date(book.releaseDate).toISOString().split('T')[0];
-    document.getElementById('update-book-description').value = book.description;
-    document.getElementById('update-book-genre').value = book.genre;
-    document.getElementById('update-book-price').value = book.price;
-    document.getElementById('update-book-isbn').value = book.isbn;
-}
+// Обработчик для закрытия окна при клике на кнопку
+document.getElementById('close-modal').addEventListener('click', closeModal);
 
-// Инициализация страницы
-document.addEventListener('DOMContentLoaded', () => {
-    getBooks();  // Загружаем список книг при загрузке страницы
+// Закрытие модального окна при клике на фон
+document.getElementById('modal-overlay').addEventListener('click', closeModal);
 
-    // Обработчики для форм
-    document.getElementById('add-book-form').addEventListener('submit', addBook);
-    document.getElementById('update-book-form').addEventListener('submit', updateBook);
-});
+// Инициализация
+document.getElementById('add-book-form').addEventListener('submit', addBook);
+document.getElementById('update-book-form').addEventListener('submit', updateBook);
+window.onload = getBooks;

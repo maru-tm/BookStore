@@ -1,3 +1,5 @@
+// internal/routes/adminRoutes.js
+
 const express = require("express");
 const { getUsers, updateUserRole, deleteUser } = require("../controllers/adminController");
 const { authMiddleware, adminMiddleware } = require("../middleware/authMiddleware");
