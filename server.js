@@ -38,6 +38,7 @@ app.get("/admin", (req, res) => {
 app.use("/api/auth", require("./internal/routes/authRoutes"));
 app.use("/api/admin", require("./internal/routes/adminRoutes"));
 app.use("/api/books", require("./internal/routes/bookRoutes"));
+app.use("/api/orders", require("./internal/routes/orderRoutes"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));

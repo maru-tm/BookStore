@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bookstore</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -12,34 +11,51 @@
         <nav>
             <ul>
                 <li><a href="/">Главная</a></li>
-                <li><a href="/login">Вход</a></li>
-                <li><a href="/register">Регистрация</a></li>
+                <li><a href="/login" id="login-link">Вход</a></li>
+                <li><a href="/register" id="register-link">Регистрация</a></li>
+                <li><a href="#" id="logout-link" style="display: none;">Выход</a></li>
+                <li>
+                    <a href="#" id="cart-link" style="display: none;">
+                        Корзина <span id="cart-item-count">0</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
-
     <main>
         <section class="intro">
             <h1>Добро пожаловать в Bookstore!</h1>
             <p>Мы предлагаем широкий ассортимент книг для любого вкуса!</p>
         </section>
-
         <section class="featured">
             <h2>Рекомендуемые книги</h2>
             <div id="login-reminder" class="reminder">
-                <p>Для просмотра каталога вам необходимо зарегистрироваться.</p>
-                <a href="/register" class="button">Зарегистрироваться</a>
+                <p>Для просмотра каталога вам необходимо <a href="/register" class="button">зарегистрироваться</a>.</p>
             </div>
-            <div class="book-list" id="book-list" style="display: none;">
-                <!-- Здесь будут отображаться книги -->
-            </div>
+            <div class="book-list" id="book-list" style="display: none;"></div>
+        </section>
+        <!-- Блок корзины -->
+        <section id="cart-section" style="display: none;">
+            <h2>Корзина</h2>
+            <div id="cart-items"></div>
+            <button id="checkout-button" disabled>Оформить заказ</button>
         </section>
     </main>
-
+    <!-- Модальное окно для книги -->
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p><strong>Автор:</strong> <span id="modal-author"></span></p>
+            <p id="modal-description"></p>
+            <p><strong>Жанр:</strong> <span id="modal-genre"></span></p>
+            <p><strong>Цена:</strong> <span id="modal-price"></span></p>
+            <button id="add-to-cart-btn">Добавить в корзину</button>
+        </div>
+    </div>
     <footer>
         <p>&copy; 2025 Bookstore. Все права защищены.</p>
     </footer>
-
     <script src="js/index.js"></script>
 </body>
 </html>
