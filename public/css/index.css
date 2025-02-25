@@ -74,31 +74,44 @@ main {
     color: #2c6e4e; /* Зеленый оттенок */
 }
 
-.book-list {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap;
+#book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Автоматически подстраивает колонки */
+    gap: 20px; /* Расстояние между карточками */
+    padding: 20px;
 }
 
 .book-item {
-    background-color: #fff;
     border: 1px solid #ddd;
-    padding: 20px;
-    width: 250px;
+    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .book-item h3 {
-    font-size: 1.5rem;
-    color: #333;
+    margin: 10px 0;
+    font-size: 18px;
 }
 
 .book-item p {
-    font-size: 1rem;
-    color: #777;
+    font-size: 14px;
+    color: #555;
+}
+
+.add-to-cart-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.add-to-cart-btn:hover {
+    background: #0056b3;
 }
 
 /* Стили футера */

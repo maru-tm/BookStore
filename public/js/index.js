@@ -8,14 +8,13 @@ function checkAuth() {
         document.getElementById('login-link').style.display = 'none';
         document.getElementById('register-link').style.display = 'none';
         document.getElementById('logout-link').style.display = 'block';
-        document.getElementById('cart-link').style.display = 'block';
+        document.getElementById('profile-link').style.display = 'block';
         loadBooks();
     } else {
         document.getElementById('login-reminder').style.display = 'block';
         document.getElementById('book-list').style.display = 'none';
         document.getElementById('logout-link').style.display = 'none';
-        document.getElementById('cart-link').style.display = 'none';
-        document.getElementById('cart-section').style.display = 'none';
+        document.getElementById('profile-link').style.display = 'none';
     }
 }
 
@@ -47,7 +46,7 @@ async function loadBooks() {
         const books = await fetchWithAuth('/api/books');
         const bookList = document.getElementById('book-list');
         bookList.innerHTML = '';
-        bookList.style.display = 'block';
+        bookList.style.display = 'grid';
         document.getElementById('login-reminder').style.display = 'none';
 
         books.forEach(book => {

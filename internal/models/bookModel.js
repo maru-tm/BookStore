@@ -1,16 +1,16 @@
 // internal/models/bookModel.js
 const mongoose = require('mongoose');
 
-// Определение схемы для книги
+// Define the schema for a book
 const bookSchema = new mongoose.Schema({
-  title: { type: String, required: true }, // Название книги
-  author: { type: String, required: true }, // Автор книги
-  releaseDate: { type: Date, required: true }, // Дата выхода книги
-  description: { type: String }, // Описание книги
-  genre: { type: String }, // Жанр книги
-  price: { type: Number, required: true }, // Цена книги
-  isbn: { type: String, unique: true }, // ISBN книги
+  title: { type: String, required: true }, // Book title
+  author: { type: String, required: true }, // Book author
+  releaseDate: { type: Date, required: true }, // Book release date
+  description: { type: String }, // Book description
+  genre: { type: String }, // Book genre
+  price: { type: Number, required: true }, // Book price
+  isbn: { type: String, unique: true }, // Book ISBN
 });
 
-// Экспортируем модель книги
+// Export the book model
 module.exports = mongoose.model('Book', bookSchema);

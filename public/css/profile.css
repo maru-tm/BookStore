@@ -1,0 +1,188 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Контейнер профиля */
+.profile-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 10; /* Устанавливаем z-index для профиля */
+}
+
+/* Аватар */
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Заголовки */
+.profile-container h1 {
+    font-size: 24px;
+    color: #2c6e4e;
+    margin-bottom: 10px;
+}
+
+.profile-container p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Кнопки */
+.profile-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2c6e4e;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.profile-btn:hover {
+    background-color: #1c4e3d;
+}
+
+/* Секция информации */
+.profile-info {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.profile-info div {
+    margin-bottom: 10px;
+}
+
+.profile-info label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 480px) {
+    .profile-container {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+/* Стили для модального окна */
+.modal {
+    position: fixed;
+    z-index: 1000; /* Модальное окно поверх других элементов */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 600px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Затемнённый фон */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 999; /* Фон будет чуть ниже модального окна */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Контейнер формы с прокруткой */
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    flex-grow: 1;
+    max-height: 70vh;
+}
+
+/* Стили для инпутов и текстовых полей */
+.modal input,
+.modal textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    transition: border-color 0.3s;
+    min-height: 40px;
+}
+
+.modal textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Кнопки */
+.modal button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal button:hover {
+    background-color: #45a049;
+}
+
+/* Кнопка закрытия */
+.modal .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.modal .close:hover {
+    color: #000;
+}

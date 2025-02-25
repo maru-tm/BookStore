@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Профиль пользователя</h1>
+    </header>
+    
+    <main>
+        <section id="user-info">
+            <h2>Информация о пользователе</h2>
+            <p><strong>Имя:</strong> <span id="username"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Роль:</strong> <span id="role"></span></p>
+            <button id="edit-profile">Редактировать</button>
+        </section>
+
+        <!-- Модальное окно для редактирования профиля -->
+        <div id="edit-profile-modal" class="modal" style="display:none;">
+            <h3>Изменить данные профиля</h3>
+            <form id="edit-profile-form">
+                <label for="new-username">Новое имя пользователя:</label>
+                <input type="text" id="new-username" name="username" required>
+
+                <label for="old-password">Старый пароль:</label>
+                <input type="password" id="old-password" name="old-password">
+
+                <label for="new-password">Новый пароль:</label>
+                <input type="password" id="new-password" name="new-password">
+
+                <button type="submit">Обновить профиль</button>
+                <button type="button" id="close-edit-modal">Закрыть</button>
+            </form>
+        </div>
+
+    </main>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

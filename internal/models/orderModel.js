@@ -1,52 +1,50 @@
 const mongoose = require('mongoose');
-
-// Определение схемы для заказа
 const orderSchema = new mongoose.Schema({
   userId: { 
-    type: mongoose.Schema.Types.ObjectId, // Ссылка на пользователя (User)
-    ref: 'User', 
-    required: true 
+    type: mongoose.Schema.Types.ObjectId, // Reference to the user (User )
+    ref: 'User ', 
+    required: true // This field is required
   },
   username: { 
     type: String, 
-    required: true 
-  }, // Имя пользователя для удобства отображения
+    required: true // Username for convenience in display
+  },
   orderItems: [ 
     { 
       bookId: { 
-        type: mongoose.Schema.Types.ObjectId, // Ссылка на книгу (Book)
+        type: mongoose.Schema.Types.ObjectId, // Reference to the book (Book)
         ref: 'Book', 
-        required: true 
+        required: true // This field is required
       },
       bookTitle: { 
         type: String, 
-        required: true 
-      }, // Название книги
+        required: true // Title of the book
+      },
       bookPrice: { 
         type: Number, 
-        required: true 
-      }, // Цена книги на момент оформления заказа
+        required: true // Price of the book at the time of order
+      },
       quantity: { 
         type: Number, 
-        required: true, 
-        default: 1 
-      } // Количество экземпляров книги
+        required: true, // This field is required
+        default: 1 // Default quantity is 1
+      } // Number of copies of the book
     }
   ],
   totalCost: { 
     type: Number, 
-    required: true 
-  }, // Общая стоимость заказа
+    required: true // Total cost of the order
+  },
   orderDate: { 
     type: Date, 
-    default: Date.now 
-  }, // Дата создания заказа
+    default: Date.now // Date of order creation, defaults to the current date
+  },
   status: { 
     type: String, 
-    enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled'], 
-    default: 'pending' 
-  } // Статус заказа
+    enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled'], // Possible statuses for the order
+    default: 'pending' // Default status is 'pending'
+  }
 });
 
-// Экспортируем модель заказа
+// Export the order model
 module.exports = mongoose.model('Order', orderSchema);
